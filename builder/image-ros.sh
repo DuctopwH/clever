@@ -110,6 +110,11 @@ my_travis_retry pip install -r /home/pi/catkin_ws/src/clover/clover/requirements
 source /opt/ros/melodic/setup.bash
 catkin_make -j2 -DCMAKE_BUILD_TYPE=Release
 
+echo_stamp "Add deprecation warning to clever srv files"
+echo `python -c "import os, clever.srv; print(os.path.dirname(clever.__file__))"`
+ls `python -c "import os, clever.srv; print(os.path.dirname(clever.__file__))"`
+cp -r src/clover/builder/assets/srv `python -c "import os, clever.srv; print(os.path.dirname(clever.__file__))"`
+
 echo_stamp "Enable ROS services"
 systemctl enable roscore
 systemctl enable clover
